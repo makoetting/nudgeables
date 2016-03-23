@@ -1,0 +1,37 @@
+<div class="col-md-12">
+	<h1 class="text-center">Nudgeables</h1>
+</div>
+
+<div class="col-md-12 table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Send Nudge</th>
+				<th>Reset</th>
+				<th>Name</th>
+				<th>Last Outreach</th>
+				<th>Last Response</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<%@roster_array.each do |member|%>
+				<tr>
+					<td><%=link_to("Nudge", nudge_path(member: member[:id]))%></td>
+					<td><%=link_to("Reset", reset_path(member: member[:id]))%></td>
+					<td><%=member[:name]%></td>
+					<td>
+						<%unless member.texts.where("texts.outreach is not null").last.nil?%>
+							<%=member.texts.where("texts.outreach is not null").last.body%>
+						<%end%>
+					</td>
+					<td>
+						<%unless member.texts.where("texts.outreach is null").last.nil?%>
+							<%=member.texts.where("texts.outreach is null").last.body%>
+					</td>
+					<%end%>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nudge</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+	<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %> text-center"><%= message %></div>
+	<%end%>
+<%= yield %>
+
+</div>
+</body>
+</html>
